@@ -1,5 +1,13 @@
-import com.differ.differcommit.naming.generator.TimestampVersionGenerator
+import com.differ.differcommit.naming.generator.VersionGenerator
 import com.differ.differcommit.tasks.DifferCommit
+
+class StaticVersionGenerator implements VersionGenerator {
+
+    @Override
+    String generateVersionName(String s) {
+        return "12333"
+    }
+}
 
 buildscript {
     repositories {
@@ -27,7 +35,7 @@ sourceCompatibility = 1.8
 build.dependsOn test
 
 task customDifferCommit(type: DifferCommit) {
-    versionGenerator = new TimestampVersionGenerator()
+    versionGenerator = new StaticVersionGenerator()
 }
 
 build.dependsOn customDifferCommit
