@@ -1,3 +1,6 @@
+import com.differ.differcommit.naming.generator.TimestampVersionGenerator
+import com.differ.differcommit.tasks.DifferCommit
+
 buildscript {
     repositories {
         mavenLocal()
@@ -22,7 +25,12 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 build.dependsOn test
-build.dependsOn differcommit
+
+task customDifferCommit(type: DifferCommit) {
+    versionGenerator = new TimestampVersionGenerator()
+}
+
+build.dependsOn customDifferCommit
 
 repositories {
     mavenCentral()
